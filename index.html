@@ -325,7 +325,9 @@
       
         
           
-            <h1 id="haa"><a href="#haa" class="headerlink" title="haa"></a>haa</h1><h2 id="2hhhh"><a href="#2hhhh" class="headerlink" title="2hhhh"></a>2hhhh</h2><p>aaaaaa</p>
+            <h1 id="haa"><a href="#haa" class="headerlink" title="haa"></a>haa</h1><h2 id="2hhhh"><a href="#2hhhh" class="headerlink" title="2hhhh"></a>2hhhh</h2><h5 id="test"><a href="#test" class="headerlink" title="test"></a>test</h5><p>$ \Gamma, G$</p>
+<p>$A<em>G A</em>\Gamma$</p>
+<p>aaaaaa</p>
 <blockquote>
 <p>aaaaaaaa</p>
 </blockquote>
@@ -665,7 +667,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -704,6 +706,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 
   
 
