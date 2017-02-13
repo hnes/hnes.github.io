@@ -88,21 +88,24 @@
 
 
 <meta name="description" content="Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。
-$ modprobe your_hard_dog_driver.ko
-softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理">
+bash
+$ modprobe your_hard_dog_driver.kobash
+softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Watch Dog">
 <meta property="og:url" content="http://hnes.github.io/2017/02/13/Watch-Dog/index.html">
 <meta property="og:site_name" content="岁寒 然后知松柏之后凋也">
 <meta property="og:description" content="Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。
-$ modprobe your_hard_dog_driver.ko
-softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理">
-<meta property="og:updated_time" content="2017-02-13T06:24:44.873Z">
+bash
+$ modprobe your_hard_dog_driver.kobash
+softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并">
+<meta property="og:updated_time" content="2017-02-13T06:26:54.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Watch Dog">
 <meta name="twitter:description" content="Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。
-$ modprobe your_hard_dog_driver.ko
-softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理">
+bash
+$ modprobe your_hard_dog_driver.kobash
+softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并">
 
 
 
@@ -329,8 +332,9 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
 
       
         <h1 id="Watchdog-on-HA"><a href="#Watchdog-on-HA" class="headerlink" title="Watchdog on HA"></a>Watchdog on HA</h1><h2 id="hardware-dog-OR-softdog"><a href="#hardware-dog-OR-softdog" class="headerlink" title="hardware dog OR softdog"></a>hardware dog OR softdog</h2><h3 id="hardware-dog"><a href="#hardware-dog" class="headerlink" title="hardware dog"></a>hardware dog</h3><p><code>/dev/watchdog</code>对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。</p>
-<pre><code>$ modprobe your_hard_dog_driver.ko
-</code></pre><h3 id="softdog"><a href="#softdog" class="headerlink" title="softdog"></a>softdog</h3><p>这种情况下，<code>/dev/watchdog</code>由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理设备，只是为应用提供了一个与操作硬件watchdog相同的接口。</p>
+<p><code>bash
+$ modprobe your_hard_dog_driver.ko</code>bash</p>
+<h3 id="softdog"><a href="#softdog" class="headerlink" title="softdog"></a>softdog</h3><p>这种情况下，<code>/dev/watchdog</code>由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理设备，只是为应用提供了一个与操作硬件watchdog相同的接口。</p>
 <pre><code>$ modprobe softdog
 </code></pre><h3 id="Tradeoff"><a href="#Tradeoff" class="headerlink" title="Tradeoff"></a>Tradeoff</h3><p>硬件watchdog比软件watchdog有更好的可靠性。</p>
 <p><strong>软件watchdog基于内核的定时器实现，当内核或中断出现异常时，软件watchdog将会失效。</strong></p>
