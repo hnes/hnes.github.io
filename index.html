@@ -245,6 +245,186 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hnes.github.io/2017/02/13/Watch-Dog/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Sen Han">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="岁寒 然后知松柏之后凋也">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="岁寒 然后知松柏之后凋也" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/13/Watch-Dog/" itemprop="url">
+                  Watch Dog
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T14:24:30+08:00">
+                2017-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Watchdog-on-HA"><a href="#Watchdog-on-HA" class="headerlink" title="Watchdog on HA"></a>Watchdog on HA</h1><h2 id="hardware-dog-OR-softdog"><a href="#hardware-dog-OR-softdog" class="headerlink" title="hardware dog OR softdog"></a>hardware dog OR softdog</h2><h3 id="hardware-dog"><a href="#hardware-dog" class="headerlink" title="hardware dog"></a>hardware dog</h3><p><code>/dev/watchdog</code>对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。</p>
+<pre><code>$ modprobe your_hard_dog_driver.ko
+</code></pre><h3 id="softdog"><a href="#softdog" class="headerlink" title="softdog"></a>softdog</h3><p>这种情况下，<code>/dev/watchdog</code>由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理设备，只是为应用提供了一个与操作硬件watchdog相同的接口。</p>
+<pre><code>$ modprobe softdog
+</code></pre><h3 id="Tradeoff"><a href="#Tradeoff" class="headerlink" title="Tradeoff"></a>Tradeoff</h3><p>硬件watchdog比软件watchdog有更好的可靠性。</p>
+<p><strong>软件watchdog基于内核的定时器实现，当内核或中断出现异常时，软件watchdog将会失效。</strong></p>
+<p>而硬件watchdog由自身的硬件电路控制, 独立于内核。无论当前系统状态如何，硬件watchdog在设定的时间间隔内没有被执行写操作，仍会重新启动系统。</p>
+<p>就是说，softdog的可用性依赖于OS，而hardware watchdog是一个独立于OS的硬件设备，其可用性是独立的。</p>
+<h3 id="Judge"><a href="#Judge" class="headerlink" title="Judge"></a>Judge</h3><p>什么时候需要watchdog？</p>
+<ol>
+<li><p>OS Panic  –&gt; <strong>卡死</strong></p>
+</li>
+<li><p>OS运行卡顿 –&gt; 由于某个模块占了大部分系统资源，导致<strong>速度变慢，但仍然在运行</strong></p>
+</li>
+<li><p>OS运行跑飞 –&gt; Out of Controll</p>
+</li>
+<li><p>使用watchdog的软件出问题（deadlock、slow）</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">Hardware Dog</th>
+<th style="text-align:right">Softdog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">最终发现异常，reset系统</td>
+<td style="text-align:right">系统卡死，但不会执行任何对外界有效的指令，最终处于安全状态</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">最终发现异常，reset系统</td>
+<td style="text-align:right">如果超过了Softdog的容忍范围，会reboot系统，否则继续慢下去</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">最终发现异常，reset系统</td>
+<td style="text-align:right">系统一直跑飞下去</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">最终发现异常，reset系统</td>
+<td style="text-align:right">最终发现异常，reset系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Hardware Dog与Soft Dog的共同点：</p>
+<blockquote>
+<p>使用watchdog的软件出问题，两者都能reset系统。</p>
+</blockquote>
+<p>但是：</p>
+<blockquote>
+<p>当内核出问题时，前者仍然能够reset系统，后者无法处理这种情况。</p>
+</blockquote>
+<hr>
+<p>2016年8月16日</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://hnes.github.io/2017/02/13/My-New-Post/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -536,7 +716,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
