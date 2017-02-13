@@ -87,22 +87,19 @@
 
 
 
-<meta name="description" content="Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。
-1$ modprobe your_hard_dog_driver.ko
-softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Watch Dog">
-<meta property="og:url" content="http://hnes.github.io/2017/02/13/Watch-Dog/index.html">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="http://hnes.github.io/hello-world/index.html">
 <meta property="og:site_name" content="岁寒 然后知松柏之后凋也">
-<meta property="og:description" content="Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。
-1$ modprobe your_hard_dog_driver.ko
-softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物">
-<meta property="og:updated_time" content="2017-02-13T06:27:57.358Z">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick">
+<meta property="og:updated_time" content="2017-02-13T03:28:49.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Watch Dog">
-<meta name="twitter:description" content="Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。
-1$ modprobe your_hard_dog_driver.ko
-softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物">
+<meta name="twitter:title" content="Hello World">
+<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick">
 
 
 
@@ -130,13 +127,13 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
 
 
 
-  <link rel="canonical" href="http://hnes.github.io/2017/02/13/Watch-Dog/"/>
+  <link rel="canonical" href="http://hnes.github.io/hello-world/"/>
 
 
 
 
 
-  <title> Watch Dog | 岁寒 然后知松柏之后凋也 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Hello World | 岁寒 然后知松柏之后凋也 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -253,7 +250,7 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://hnes.github.io/2017/02/13/Watch-Dog/">
+  <link itemprop="mainEntityOfPage" href="http://hnes.github.io/hello-world/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Sen Han">
@@ -277,7 +274,7 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
             
             
               
-                Watch Dog
+                Hello World
               
             
           </h1>
@@ -292,7 +289,7 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T14:24:30+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T11:28:49+08:00">
                 2017-02-13
               </time>
             
@@ -328,66 +325,15 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
       
 
       
-        <h1 id="Watchdog-on-HA"><a href="#Watchdog-on-HA" class="headerlink" title="Watchdog on HA"></a>Watchdog on HA</h1><h2 id="hardware-dog-OR-softdog"><a href="#hardware-dog-OR-softdog" class="headerlink" title="hardware dog OR softdog"></a>hardware dog OR softdog</h2><h3 id="hardware-dog"><a href="#hardware-dog" class="headerlink" title="hardware dog"></a>hardware dog</h3><p><code>/dev/watchdog</code>对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ modprobe your_hard_dog_driver.ko</div></pre></td></tr></table></figure>
-<h3 id="softdog"><a href="#softdog" class="headerlink" title="softdog"></a>softdog</h3><p>这种情况下，<code>/dev/watchdog</code>由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理设备，只是为应用提供了一个与操作硬件watchdog相同的接口。</p>
-<pre><code>$ modprobe softdog
-</code></pre><h3 id="Tradeoff"><a href="#Tradeoff" class="headerlink" title="Tradeoff"></a>Tradeoff</h3><p>硬件watchdog比软件watchdog有更好的可靠性。</p>
-<p><strong>软件watchdog基于内核的定时器实现，当内核或中断出现异常时，软件watchdog将会失效。</strong></p>
-<p>而硬件watchdog由自身的硬件电路控制, 独立于内核。无论当前系统状态如何，硬件watchdog在设定的时间间隔内没有被执行写操作，仍会重新启动系统。</p>
-<p>就是说，softdog的可用性依赖于OS，而hardware watchdog是一个独立于OS的硬件设备，其可用性是独立的。</p>
-<h3 id="Judge"><a href="#Judge" class="headerlink" title="Judge"></a>Judge</h3><p>什么时候需要watchdog？</p>
-<ol>
-<li><p>OS Panic  –&gt; <strong>卡死</strong></p>
-</li>
-<li><p>OS运行卡顿 –&gt; 由于某个模块占了大部分系统资源，导致<strong>速度变慢，但仍然在运行</strong></p>
-</li>
-<li><p>OS运行跑飞 –&gt; Out of Controll</p>
-</li>
-<li><p>使用watchdog的软件出问题（deadlock、slow）</p>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">Hardware Dog</th>
-<th style="text-align:right">Softdog</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">系统卡死，但不会执行任何对外界有效的指令，最终处于安全状态</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">如果超过了Softdog的容忍范围，会reboot系统，否则继续慢下去</td>
-</tr>
-<tr>
-<td>3</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">系统一直跑飞下去</td>
-</tr>
-<tr>
-<td>4</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">最终发现异常，reset系统</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Hardware Dog与Soft Dog的共同点：</p>
-<blockquote>
-<p>使用watchdog的软件出问题，两者都能reset系统。</p>
-</blockquote>
-<p>但是：</p>
-<blockquote>
-<p>当内核出问题时，前者仍然能够reset系统，后者无法处理这种情况。</p>
-</blockquote>
-<hr>
-<p>2016年8月16日</p>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
     </div>
@@ -418,15 +364,15 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/13/My-New-Post/" rel="next" title="My New Post">
-                <i class="fa fa-chevron-left"></i> My New Post
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/My-New-Post/" rel="prev" title="My New Post">
+                My New Post <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -535,7 +481,7 @@ softdog这种情况下，/dev/watchdog由一内核模块softdog.ko通过定时�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Watchdog-on-HA"><span class="nav-number">1.</span> <span class="nav-text">Watchdog on HA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hardware-dog-OR-softdog"><span class="nav-number">1.1.</span> <span class="nav-text">hardware dog OR softdog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hardware-dog"><span class="nav-number">1.1.1.</span> <span class="nav-text">hardware dog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softdog"><span class="nav-number">1.1.2.</span> <span class="nav-text">softdog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tradeoff"><span class="nav-number">1.1.3.</span> <span class="nav-text">Tradeoff</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Judge"><span class="nav-number">1.1.4.</span> <span class="nav-text">Judge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
             
 
           </div>
