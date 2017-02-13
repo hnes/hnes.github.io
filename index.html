@@ -335,68 +335,15 @@
       
         
           
-            <h1 id="Watchdog-on-HA"><a href="#Watchdog-on-HA" class="headerlink" title="Watchdog on HA"></a>Watchdog on HA</h1><h2 id="hardware-dog-OR-softdog"><a href="#hardware-dog-OR-softdog" class="headerlink" title="hardware dog OR softdog"></a>hardware dog OR softdog</h2><h3 id="hardware-dog"><a href="#hardware-dog" class="headerlink" title="hardware dog"></a>hardware dog</h3><p><code>/dev/watchdog</code>对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ modprobe your_hard_dog_driver.ko</div></pre></td></tr></table></figure>
-<h3 id="softdog"><a href="#softdog" class="headerlink" title="softdog"></a>softdog</h3><p>这种情况下，<code>/dev/watchdog</code>由一内核模块softdog.ko通过定时器机制实现，它并不对应着真实的物理设备，只是为应用提供了一个与操作硬件watchdog相同的接口。</p>
-<pre><code>$ modprobe softdog
-</code></pre><h3 id="Tradeoff"><a href="#Tradeoff" class="headerlink" title="Tradeoff"></a>Tradeoff</h3><p>硬件watchdog比软件watchdog有更好的可靠性。</p>
-<p><strong>软件watchdog基于内核的定时器实现，当内核或中断出现异常时，软件watchdog将会失效。</strong></p>
-<p>而硬件watchdog由自身的硬件电路控制, 独立于内核。无论当前系统状态如何，硬件watchdog在设定的时间间隔内没有被执行写操作，仍会重新启动系统。</p>
-<p>就是说，softdog的可用性依赖于OS，而hardware watchdog是一个独立于OS的硬件设备，其可用性是独立的。</p>
-<h3 id="Judge"><a href="#Judge" class="headerlink" title="Judge"></a>Judge</h3><p>什么时候需要watchdog？</p>
-<ol>
-<li><p>OS Panic  –&gt; <strong>卡死</strong></p>
-</li>
-<li><p>OS运行卡顿 –&gt; 由于某个模块占了大部分系统资源，导致<strong>速度变慢，但仍然在运行</strong></p>
-</li>
-<li><p>OS运行跑飞 –&gt; Out of Controll</p>
-</li>
-<li><p>使用watchdog的软件出问题（deadlock、slow）</p>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">Hardware Dog</th>
-<th style="text-align:right">Softdog</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">系统卡死，但不会执行任何对外界有效的指令，最终处于安全状态</td>
-</tr>
-<tr>
-<td>2</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">如果超过了Softdog的容忍范围，会reboot系统，否则继续慢下去</td>
-</tr>
-<tr>
-<td>3</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">系统一直跑飞下去</td>
-</tr>
-<tr>
-<td>4</td>
-<td style="text-align:center">最终发现异常，reset系统</td>
-<td style="text-align:right">最终发现异常，reset系统</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Hardware Dog与Soft Dog的共同点：</p>
-<blockquote>
-<p>使用watchdog的软件出问题，两者都能reset系统。</p>
-</blockquote>
-<p>但是：</p>
-<blockquote>
-<p>当内核出问题时，前者仍然能够reset系统，后者无法处理这种情况。</p>
-</blockquote>
-<hr>
-<p>2016年8月16日</p>
-
-          
+          Watchdog on HAhardware dog OR softdoghardware dog/dev/watchdog对应着真实的物理设备，不同类型的硬件watchdog设备由相应的硬件驱动管理
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Watch-Dog/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -525,23 +472,17 @@
       
         
           
-            <h1 id="haa"><a href="#haa" class="headerlink" title="haa"></a>haa</h1><h2 id="2hhhh"><a href="#2hhhh" class="headerlink" title="2hhhh"></a>2hhhh</h2><h5 id="test"><a href="#test" class="headerlink" title="test"></a>test</h5><p>$ \Gamma, G $</p>
-<p>$$<br>\theta_i = \theta_i - \alpha\frac\partial{\partial\theta_i}J(\theta)<br>$$</p>
-<p>Who $\lt$</p>
-<p>$$ b.com \notin a.com $$</p>
-<p>$$ b.com \notin *.a.com $$</p>
-<p>$$ www.a.com \in *.a.com $$</p>
-<p>$$ w.w.w.a.com \in *.a.com $$</p>
-<p>$$ a.com \notin *.a.com $$</p>
-<p>$$ a.com \in *.com $$</p>
-<p>$$ a.com \in * $$</p>
-<p>aaaaaa</p>
-<blockquote>
-<p>aaaaaaaa</p>
-</blockquote>
-<h3 id="444"><a href="#444" class="headerlink" title="444"></a>444</h3><p>aaaa</p>
-
-          
+          haa2hhhhtest$ \Gamma, G $
+$$\theta_i = \theta_i - \alpha\frac\partial{\partial\theta_i}J(\theta)$$
+W
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/My-New-Post/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -670,17 +611,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any pro
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/hello-world/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
